@@ -24,6 +24,7 @@ jobs:
   plan:
   - get: test-repo
   - get: service1
+  - get: pipeline-config
     passed: [service1-build]
     trigger: true
   - task: run-automation-tests

@@ -6,8 +6,8 @@ image: docker:///busybox
 inputs:
 - name: service1
 
-outputs:
-- name: service1-artifact
+#outputs:
+#- name: service1-artifact
 
 run:
    path: echo

@@ -3,8 +3,8 @@ platform: linux
 
 image: docker:///busybox
 
-inputs:
-- name: service1-artifact
+#inputs:
+#- name: service1-artifact
 
 run:
    path: echo
