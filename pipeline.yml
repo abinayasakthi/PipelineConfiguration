@@ -23,9 +23,11 @@ jobs:
 - name: test-automation
   plan:
   - get: test-repo
+    trigger: true
   - get: service1
-  - get: pipeline-config
     passed: [service1-build]
+    trigger: true
+  - get: pipeline-config
     trigger: true
   - task: run-automation-tests
     file: pipeline-config/run-automation-tests.yml
@@ -34,10 +36,13 @@ jobs:
   - get: service1
     passed: [test-automation]
     trigger: true
-  - task: staging task
-#    inputs:
-#    - name: service1
-      run:
-         path: echo
-         args: [Deploying to staging!]
+  - task: staging-task
+    inputs:
+    - name: service1
+    config:
+     platform: linux
+     image: docker:///busybox
+     run:
+      path: echo
+      args: [Deploying to staging!]
 
