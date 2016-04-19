@@ -19,9 +19,6 @@ jobs:
   - get: service1
   - get: pipeline-config
   - task: run-unit-tests
-    run:
-      path: echo
-      args: [run unit tests....]
     file: pipeline-config/run-unit-tests-service1.yml
 - name: test-automation
   plan:

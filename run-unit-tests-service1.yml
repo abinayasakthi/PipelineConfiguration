@@ -10,4 +10,6 @@ outputs:
 - name: service1-artifact
 
 run:
-  path: service1/Repo1/service1_tasks.sh
+   path: echo
+   args: [Building service 1]
+#  path: service1/Repo1/service1_tasks.sh
