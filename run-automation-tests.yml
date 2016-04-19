@@ -7,4 +7,6 @@ inputs:
 - name: service1-artifact
 
 run:
-  path: test-repo/run_automation_tests.sh
+   path: echo
+   args: [Running automation tests!]
+#  path: test-repo/run_automation_tests.sh
