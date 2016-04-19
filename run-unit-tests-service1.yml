@@ -1,0 +1,13 @@
+---
+platform: linux
+
+image: docker:///busybox
+
+inputs:
+- name: service1
+
+outputs:
+- name: service1-artifact
+
+run:
+  path: service1/Repo1/service1_tasks.sh

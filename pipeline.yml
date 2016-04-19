@@ -1,0 +1,48 @@
+resources:
+- name: service1
+  type: git
+  source:
+    uri: https://github.com/abinayasakthi/ConcourseCI.git
+    branch: master
+- name: test-repo
+  type: git
+  source:
+    uri: https://github.com/abinayasakthi/ConcourseTest.git
+- name: pipeline-config
+  type: git
+  source:
+    uri: https://github.com/abinayasakthi/PipelineConfiguration.git
+
+jobs:
+- name: service1-build
+  plan:
+  - get: service1
+  - get: pipeline-config
+  - task: run-unit-tests
+    run:
+      path: echo
+      args: [run unit tests....]
+    file: pipeline-config/run-unit-tests-service1.yml
+- name: test-automation
+  plan:
+  - get: test-repo
+  - get: service1
+    passed: [service1-build]
+    trigger: true
+  - task: run-automation-tests
+    file: pipeline-config/run-automation-tests.yml
+- name: staging
+  plan:
+  - get: service1
+    passed: [test-automation]
+    trigger: true
+  - task: staging task
+    config:
+      platform: linux
+      image: docker:///busybox
+    inputs:
+    - name: service1
+      run:
+         path: echo
+         args: [Deploying to staging!]
+

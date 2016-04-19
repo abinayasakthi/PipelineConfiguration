@@ -1,0 +1,10 @@
+---
+platform: linux
+
+image: docker:///busybox
+
+inputs:
+- name: service1-artifact
+
+run:
+  path: test-repo/run_automation_tests.sh
