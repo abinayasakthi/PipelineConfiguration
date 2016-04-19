@@ -35,11 +35,8 @@ jobs:
     passed: [test-automation]
     trigger: true
   - task: staging task
-    config:
-      platform: linux
-      image: docker:///busybox
-    inputs:
-    - name: service1
+#    inputs:
+#    - name: service1
       run:
          path: echo
          args: [Deploying to staging!]
